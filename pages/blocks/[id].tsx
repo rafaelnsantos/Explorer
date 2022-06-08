@@ -5,6 +5,7 @@ interface Props {
 }
 
 const Block: NextPage<Props> = ({ id }) => {
+  // TODO: Why SSR not working with `id` ?
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       Showing block: {id}
