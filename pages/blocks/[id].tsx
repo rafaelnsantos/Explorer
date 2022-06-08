@@ -1,14 +1,22 @@
-import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import type { GetServerSideProps, NextPage } from "next";
 
-const Block: NextPage = () => {
-  const router = useRouter()
-  const { id } = router.query
+interface Props {
+  id: string;
+}
+
+const Block: NextPage<Props> = ({ id }) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       Showing block: {id}
     </div>
-  )
-}
+  );
+};
 
-export default Block
+export default Block;
+
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
+  const id = context.query?.id || "";
+  return { props: { id: id.toString() } };
+};
